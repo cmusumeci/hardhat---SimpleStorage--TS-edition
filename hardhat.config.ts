@@ -22,16 +22,23 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
-const PRIVATE_KEY = process.env.PRIVATE_KEY
+const PRIVATE_RINKEBY_KEY = process.env.PRIVATE_RINKEBY_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
+const PRIVATE_KEY_LOCAL = process.env.PRIVATE_KEY_LOCAL
+const LOCAL_RPC_URL = process.env.LOCAL_RPC_URL
+
 const config: HardhatUserConfig = {
   solidity: "0.8.8",
   defaultNetwork: "hardhat",
   networks: {
     rinkeby: {
       url: RINKEBY_RPC_URL,
-      accounts: [PRIVATE_KEY!],
+      accounts: [PRIVATE_RINKEBY_KEY!],
       chainId: 4,
+    },
+    localhost: {
+      accounts: [PRIVATE_KEY_LOCAL!],
+      url: LOCAL_RPC_URL,
     },
   },
   etherscan: {
