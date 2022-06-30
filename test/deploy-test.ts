@@ -1,10 +1,10 @@
-import { expect, assert } from "chai"
-import type { ContractFactory, Contract } from "ethers"
+import { assert } from "chai"
 import { ethers } from "hardhat"
 import { describe } from "mocha"
+import { SimpleStorage, SimpleStorage__factory } from "../typechain"
 
 describe("Test SimpleStorage contract", () => {
-  let simpleStorageFactory: ContractFactory, simpleStorage: Contract
+  let simpleStorageFactory: SimpleStorage__factory, simpleStorage: SimpleStorage
   beforeEach(async () => {
     simpleStorageFactory = await ethers.getContractFactory("SimpleStorage")
     simpleStorage = await simpleStorageFactory.deploy()
