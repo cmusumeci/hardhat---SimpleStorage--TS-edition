@@ -32,6 +32,11 @@ contract SimpleStorage {
        people.push(People({name:_name,age:_age})); 
        ageOfPerson[_name] = _age;
    }
+
+
+   function retrievePeople(string memory _name)public view returns(uint256){
+       return ageOfPerson[_name];
+   }
   
 }
 

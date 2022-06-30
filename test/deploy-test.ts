@@ -16,15 +16,21 @@ describe("Test SimpleStorage contract", () => {
   //    })
 
   it("Should start with favorite number set to 0", async () => {
-    const favoriteNumber = await simpleStorage.favoriteNumber()
+    const favoriteNumber = await simpleStorage.retrieve()
     const expetedFavoriteNumber = "0"
     assert.equal(favoriteNumber.toString(), expetedFavoriteNumber)
   })
 
   it("Should set favorite number to 1 by store function", async () => {
     const store = await simpleStorage.store(1)
-    const favoriteNumber = await simpleStorage.favoriteNumber()
+    const favoriteNumber = await simpleStorage.retrieve()
     const expetedFavoriteNumber = "1"
     assert.equal(favoriteNumber.toString(), expetedFavoriteNumber)
+  })
+
+  it("Add person to the list", async () => {
+     await simpleStorage.addPeople("Claudio", 32)
+    const ageOfPeople =  await simpleStorage.retrievePeople("Claudio")
+    assert.equal(ageOfPeople.toString(), "32")
   })
 })

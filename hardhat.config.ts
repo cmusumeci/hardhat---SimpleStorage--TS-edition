@@ -6,7 +6,8 @@ import "@nomiclabs/hardhat-waffle"
 import "@typechain/hardhat"
 import "hardhat-gas-reporter"
 import "solidity-coverage"
-
+import "hardhat-gas-reporter"
+import "solidity-coverage"
 dotenv.config()
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -26,6 +27,7 @@ const PRIVATE_RINKEBY_KEY = process.env.PRIVATE_RINKEBY_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const PRIVATE_KEY_LOCAL = process.env.PRIVATE_KEY_LOCAL
 const LOCAL_RPC_URL = process.env.LOCAL_RPC_URL
+const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
 
 const config: HardhatUserConfig = {
   solidity: "0.8.8",
@@ -44,6 +46,15 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
   },
+  gasReporter: {
+    enabled: true,
+     currency: "USD",
+    coinmarketcap: COINMARKETCAP_API_KEY,
+    noColors:true,
+    outputFile: "gas-reporter.txt",
+    token:'MATIC'
+  },
+  
 }
 
 export default config
